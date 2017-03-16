@@ -15,4 +15,13 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/explore', 'ExploreController@index');
+
+Route::get('/topic', 'TopicController@index');
+
 Route::get('/admin', 'Admin\DashboardController@index');
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::resource('users', 'UserController');
+});

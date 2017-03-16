@@ -4,6 +4,7 @@ return [
     'required' => ':attribute 不能为空',
     'confirmed' => ':attribute 不匹配',
     'email' => '邮件地址不正确',
+    'unique' => '邮箱已被使用',
     'min' => [
         'numeric' => ':attribute 必须不小于 :min',
         'file'    => ':attribute 必须不小于 :min KB',

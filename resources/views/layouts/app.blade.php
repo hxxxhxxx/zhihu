@@ -19,6 +19,16 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <style>
+        .user-avatar {
+            width: 27px;
+            height: 27px;
+            margin: -10px 0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -43,7 +53,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li @if (Request::is('/')) class="active" @endif><a href="{{ url('/') }}">首页</a></li>
+                        <li @if (Request::is('explore')) class="active" @endif><a href="{{ url('/explore') }}">发现</a></li>
+                        <li @if (Request::is('topic')) class="active" @endif><a href="{{ url('/topic') }}">话题</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -56,7 +68,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <img class="user-avatar" src="{{ url('/storage'.Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}">
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -64,7 +76,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            退出
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
