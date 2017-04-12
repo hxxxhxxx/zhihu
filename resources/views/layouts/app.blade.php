@@ -20,6 +20,7 @@
         ]) !!};
     </script>
     <style>
+        /*导航栏用户头像*/
         .user-avatar {
             width: 27px;
             height: 27px;
@@ -28,12 +29,21 @@
             -moz-border-radius: 3px;
             border-radius: 3px;
         }
+        /*导航栏搜索按钮*/
+        .btn-search {
+            margin-right: 20px;
+        }
+        .modal-subtitle {
+            color: #8590a6;
+            font-size: 14px;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="container col-md-10 col-md-offset-1">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -57,6 +67,18 @@
                         <li @if (Request::is('explore')) class="active" @endif><a href="{{ url('/explore') }}">发现</a></li>
                         <li @if (Request::is('topic')) class="active" @endif><a href="{{ url('/topic') }}">话题</a></li>
                     </ul>
+
+                    <form class="navbar-form navbar-left">
+                        <div class="input-group">
+                            <input type="text" class="form-control" size="35" placeholder="搜索你感兴趣的内容...">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn-search btn">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" data-toggle="modal" data-target="#ask-modal" class="btn btn-primary">提问</button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -93,6 +115,52 @@
 
         @yield('content')
     </div>
+
+    {{--提问模态框--}}
+    <div class="modal fade" id="ask-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title text-center">写下你的问题</h3>
+                    <h5 class="modal-subtitle text-center">描述精确的问题更易得到解答</h5>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="question-title" name="question-title" placeholder="问题标题">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="topics" name="topics" placeholder="添加话题">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="question-desc">问题描述（可选）：</label>
+                            <button type="button" class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-picture"></span>
+                            </button>
+                            <textarea class="form-control" name="question-desc" id="question-desc" rows="5"
+                                      placeholder="问题背景、条件等详细信息"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="question-ask-anonymous" id="question-ask-anonymous"> 匿名提问
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交问题</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
