@@ -7,11 +7,13 @@
     <title>ZhihuAdmin</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    @yield('styles')
 </head>
 <body>
 <div id="app">
@@ -44,16 +46,16 @@
                     </li>
                     <li @if (Request::is('admin/users*')) class="active" @endif>
                         <a href="{{ url('/admin/users') }}">用户管理</a>
-                    </li><li>
-                        <a href="#">user admin</a>
-                    </li><li>
-                        <a href="#">user admin</a>
-                    </li><li>
-                        <a href="#">user admin</a>
-                    </li><li>
+                    </li>
+                    <li @if (Request::is('admin/topics*')) class="active" @endif>
+                        <a href="{{ url('/admin/topics') }}">话题管理</a>
+                    </li>
+                    <li>
                         <a href="#">user admin</a>
                     </li>
-
+                    <li>
+                        <a href="#">user admin</a>
+                    </li>
                 </ul>
             </div>
 
@@ -68,6 +70,7 @@
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+@yield('scripts')
 </body>
 </html>

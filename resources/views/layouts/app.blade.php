@@ -38,7 +38,14 @@
             font-size: 14px;
             line-height: 1.4;
         }
+
+        /*定义小字体、灰颜色通用样式*/
+        .span-gray-small-font {
+            color: #999999;
+            font-size: 14px;
+        }
     </style>
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -161,8 +168,8 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
